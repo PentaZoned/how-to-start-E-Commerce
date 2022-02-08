@@ -1,6 +1,6 @@
 // import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
-const { Category } = require('.');
+const { Category } = require('./Category');
 // import our database connection from config.js
 const sequelize = require('../config/connection');
 
@@ -38,10 +38,10 @@ Product.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
+      onDelete: "cascade",
       references: {
         model: "Category",
         key: "id",
-        unique: false,
       },
     },
   },
